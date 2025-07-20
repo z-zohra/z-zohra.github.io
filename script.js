@@ -267,9 +267,22 @@ class BubbleGame {
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
 
-        // Piano notes in Hz (C major pentatonic scale for pleasant sounds)
-        const pianoNotes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25]; // C4, D4, E4, G4, A4, C5
-        const randomNote = pianoNotes[Math.floor(Math.random() * pianoNotes.length)];
+        // Mozart Symphony No. 40 opening theme notes (G minor)
+        const mozartNotes = [
+            392.00,  // G4 - da
+            392.00,  // G4 - da  
+            392.00,  // G4 - da
+            311.13,  // Eb4 - DUM
+            466.16,  // Bb4 - higher variation
+            466.16,  // Bb4 - higher variation
+            466.16,  // Bb4 - higher variation
+            369.99,  // F#4 - resolution
+            349.23,  // F4 - melodic continuation
+            329.63,  // E4 - descending
+            293.66,  // D4 - classical resolution
+            261.63   // C4 - final resolution
+        ];
+        const randomNote = mozartNotes[Math.floor(Math.random() * mozartNotes.length)];
 
         // Create piano-like sound using multiple oscillators
         this.createPianoNote(randomNote);
@@ -342,20 +355,20 @@ class BubbleGame {
         const scoreElement = document.createElement('div');
         scoreElement.id = 'bubble-score';
         scoreElement.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: rgba(107, 91, 115, 0.9);
-            color: #F5F5F0;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            z-index: 1001;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 196, 221, 0.3);
-            transition: all 0.3s ease;
-            opacity: 0;
+            position: fixed !important;
+            top: 117px !important;
+            right: 20px !important;
+            background: rgba(107, 91, 149, 0.9) !important;
+            color: #F5F5F0 !important;
+            padding: 8px 12px !important;
+            border-radius: 20px !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            z-index: 1001 !important;
+            backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(212, 196, 221, 0.3) !important;
+            transition: all 0.3s ease !important;
+            opacity: 0 !important;
         `;
         scoreElement.innerHTML = '🫧 Bubbles: 0';
         document.body.appendChild(scoreElement);
@@ -380,7 +393,7 @@ class BubbleGame {
     startBubbleGeneration() {
         // Create bubbles at random intervals
         setInterval(() => {
-            if (Math.random() < 0.3) { // 30% chance every interval
+            if (Math.random() < 0.5) { // 50% chance every interval
                 this.createBubble();
             }
         }, 2000);
